@@ -1,6 +1,8 @@
-# Ina-Lyser
-
 [![Static Badge](https://img.shields.io/badge/lang-en-FF0000)](README.md) [![Static Badge](https://img.shields.io/badge/lang-fr-0000FF)](README.fr.md)
+
+# ⚡⚽ Ina-Lyser ⚽⚡
+
+![Screenshot of game title menu](source/assets/img/cover.jpg)
 
 [![Static Badge](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
