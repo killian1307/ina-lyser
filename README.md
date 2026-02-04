@@ -2,11 +2,6 @@
 
 # ⚡⚽ Ina-Lyser ⚽⚡
 
-![Official Artwork](assets/img/cover.jpg)
-<p align="right">
-  <sub>Official Artwork</sub>
-</p>
-
 [![Static Badge](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
 ## 🌐 Online Access
@@ -94,6 +89,10 @@ This project relies on the following open-source libraries:
 * **OpenCV (headless):** For image preprocessing (grayscale, contrast, resizing).
 * **Pandas:** For managing the player database (CSV).
 * **Difflib:** For fuzzy string matching and typo correction.
+
+## Copyright
+
+* **Cover Image:** [https://x.com/InazumaSeries/status/1968873138210701555](https://x.com/InazumaSeries/status/1968873138210701555)
 
 ## License
 
