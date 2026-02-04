@@ -3,8 +3,9 @@
 # ⚡⚽ Ina-Lyser ⚽⚡
 
 ![Official Artwork](assets/img/cover.jpg)
-*Official Artwork*
-
+<p align="right">
+<em>Official Artwork</em>
+</p>
 [![Static Badge](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
 ## 🌐 Online Access
