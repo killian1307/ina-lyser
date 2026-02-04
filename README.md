@@ -1,6 +1,6 @@
 # ⚡⚽ Ina-Lyser ⚽⚡
 
-[![Static Badge](https://img.shields.io/badge/lang-en-FF0000)](README.md) [![Static Badge](https://img.shields.io/badge/lang-fr-0000FF)](README.fr.md)
+[![Static Badge](https://img.shields.io/badge/lang-en-FF0000)](README.md) [![Static Badge](https://img.shields.io/badge/lang-fr-0000FF)](README.fr.md) [![Static Badge](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 ![Official Artwork of Inazuma Eleven: Victory Road](assets/img/cover.jpg)
 
 ## 🌐 Online Access
@@ -12,7 +12,6 @@
 </h3>
 
 ---
-[![Static Badge](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
 **Ina-Lyser** is an automated tool designed for **Inazuma Eleven: Victory Road** players. It allows you to upload screenshots of your team formations, automatically detects player names, stats, and tactical setups using local AI (OCR), and exports the data into a clean JSON format. My goal was primarily to build this tool as part of a larger **Inazuma Eleven: Victory Road** competitive website project, but other tools or team builders could take advantage of the simple execution and clean format too!
 
