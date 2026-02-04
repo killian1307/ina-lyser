@@ -16,7 +16,6 @@
 <h2 align="center">
 🚀 Click here to launch: <a href="" target="_blank">https://ina-lyser.streamlit.app</a>
 </h2>
-
 ---
 
 **Ina-Lyser** is an automated tool designed for **Inazuma Eleven: Victory Road** players. It allows you to upload screenshots of your team formations, automatically detects player names, stats, and tactical setups using local AI (OCR), and exports the data into a clean JSON format. My goal was primarily to build this tool as part of a larger **Inazuma Eleven: Victory Road** competitive website project, but other tools or team builders could take advantage of the simple execution and clean format too!
