@@ -6,6 +6,7 @@ import cv2
 import re
 import time
 import streamlit as st
+import difflib
 
 @st.cache_resource
 def load_model():
@@ -33,6 +34,9 @@ class ExactTeamScanner:
         self.reader = load_model()
         
         self.db = self.load_database()
+        
+        # Create a list of all valid names for comparison
+        self.all_names = list(self.db.keys())
         
         self.callback = None  # Holder for the website function
 
@@ -76,17 +80,35 @@ class ExactTeamScanner:
             lookup[local.lower()] = player_data
 
         return lookup
+    
+    # Add the fuzzy matching helper function
+    def find_fuzzy_match(self, text, threshold=0.85):
+        """
+        Returns the player data if a name in the DB is >85% similar to text.
+        """
+        # get_close_matches returns a list of the best matches
+        matches = difflib.get_close_matches(text, self.all_names, n=1, cutoff=threshold)
+        if matches:
+            best_match_key = matches[0]
+            return self.db[best_match_key]
+        return None
 
     def preprocess_image(self):
-        """ Upscale x2 and increase contrast """
+        """ Optimized for production """
         img = cv2.imread(self.image_path)
         if img is None:
             raise ValueError(f"Could not load image: {self.image_path}")
+        print(img.shape)
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         
-        contrast_img = cv2.convertScaleAbs(img, alpha=1.5, beta=-70)
+        height, width = gray.shape
+        if width > 1920:
+            scale = 1920 / width
+            gray = cv2.resize(gray, None, fx=scale, fy=scale, interpolation=cv2.INTER_AREA)
+        
+        contrast_img = cv2.convertScaleAbs(gray, alpha=1, beta=-50)
         # DEBUG: saves the contrasted image
-        # cv2.imwrite("debug_high_contrast.jpg", contrast_img)
-        print("Image Processed")
+        cv2.imwrite("debug_high_contrast.jpg", contrast_img)
         return contrast_img
 
     def get_reading_order(self, result):
@@ -160,27 +182,46 @@ class ExactTeamScanner:
             # LOGIC TRACE
             self.log(f"👉 Index {i}: Processing '{current_text}'")
 
-            # OPTION 1: Try combining with NEXT word
+            # Prepare "Next Text" for stitching checks
+            combined_text = None
             if i + 1 < len(text_list):
-                next_text = text_list[i+1].lower()
+                next_text = text_list[i+1].lower().strip()
                 combined_text = f"{current_text} {next_text}"
-                
-                if combined_text in self.db:
-                    player_found = self.db[combined_text]
-                    self.log(f"      ✅ STITCHED MATCH! -> Found ID: {player_found['id']} ({player_found['name']})")
-                    i += 2 # Skip next word
+
+            # --- PRIORITY 1: EXACT STITCHED (Best Quality) ---
+            if combined_text and combined_text in self.db:
+                player_found = self.db[combined_text]
+                self.log(f"      ✅ EXACT STITCHED! -> ID: {player_found['id']} ({player_found['name']})")
+                i += 2 # Skip current + next word
+                match_found = True
+
+            # --- PRIORITY 2: EXACT SINGLE (High Quality) ---
+            elif current_text in self.db:
+                player_found = self.db[current_text]
+                self.log(f"      ✅ EXACT SINGLE! -> ID: {player_found['id']} ({player_found['name']})")
+                i += 1 # Skip current word
+                match_found = True
+
+            # --- PRIORITY 3: FUZZY STITCHED (Medium Quality) ---
+            # Only run if we haven't found a match yet
+            elif not match_found and combined_text:
+                fuzzy = self.find_fuzzy_match(combined_text)
+                if fuzzy:
+                    player_found = fuzzy
+                    self.log(f"      ✨ FUZZY STITCHED! -> '{combined_text}' ≈ '{player_found['name']}'")
+                    i += 2 
                     match_found = True
-            
-            # OPTION 2: If Stitch failed, try SINGLE word
-            if not match_found:
-                
-                if current_text in self.db:
-                    player_found = self.db[current_text]
-                    self.log(f"      ✅ SINGLE MATCH! -> Found ID: {player_found['id']} ({player_found['name']})")
+
+            # --- PRIORITY 4: FUZZY SINGLE (Low Quality) ---
+            elif not match_found:
+                fuzzy = self.find_fuzzy_match(current_text)
+                if fuzzy:
+                    player_found = fuzzy
+                    self.log(f"      ✨ FUZZY SINGLE! -> '{current_text}' ≈ '{player_found['name']}'")
                     i += 1
                     match_found = True
-            
-            # If still no match
+
+            # If still no match, move to next word
             if not match_found:
                 i += 1
                 
