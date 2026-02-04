@@ -8,12 +8,21 @@ import time
 import streamlit as st
 
 @st.cache_resource
-def load_easyocr_reader():
+def load_model():
+    """
+    Loads EasyOCR from the local 'assets/models' folder.
+    This runs only once per session, preventing memory crashes.
+    """
+    print("🧠 Loading AI models from disk...")
     return easyocr.Reader(
         ['en'], 
         gpu=False, 
-        model_storage_directory='assets/models',
-        download_enabled=False
+        # CRITICAL: Point to your uploaded folder
+        model_storage_directory='assets/models', 
+        # CRITICAL: Stop it from trying to download anything
+        download_enabled=False,
+        # Optional: Helps stability on free cloud tier
+        quantize=False 
     )
 
 class ExactTeamScanner:
@@ -21,7 +30,7 @@ class ExactTeamScanner:
         self.csv_path = csv_path
         self.image_path = image_path
         
-        self.reader = load_easyocr_reader()
+        self.reader = load_model()
         
         self.db = self.load_database()
         
