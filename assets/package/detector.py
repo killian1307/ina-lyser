@@ -182,46 +182,46 @@ class ExactTeamScanner:
             # LOGIC TRACE
             self.log(f"👉 Index {i}: Processing '{current_text}'")
 
-            # Prepare "Next Text" for stitching checks
-            combined_text = None
+            # --- CHECK 1: STITCHED WORDS (Exact & Fuzzy) ---
             if i + 1 < len(text_list):
                 next_text = text_list[i+1].lower().strip()
                 combined_text = f"{current_text} {next_text}"
-
-            # --- PRIORITY 1: EXACT STITCHED (Best Quality) ---
-            if combined_text and combined_text in self.db:
-                player_found = self.db[combined_text]
-                self.log(f"      ✅ EXACT STITCHED! -> ID: {player_found['id']} ({player_found['name']})")
-                i += 2 # Skip current + next word
-                match_found = True
-
-            # --- PRIORITY 2: EXACT SINGLE (High Quality) ---
-            elif current_text in self.db:
-                player_found = self.db[current_text]
-                self.log(f"      ✅ EXACT SINGLE! -> ID: {player_found['id']} ({player_found['name']})")
-                i += 1 # Skip current word
-                match_found = True
-
-            # --- PRIORITY 3: FUZZY STITCHED (Medium Quality) ---
-            # Only run if we haven't found a match yet
-            elif not match_found and combined_text:
-                fuzzy = self.find_fuzzy_match(combined_text)
-                if fuzzy:
-                    player_found = fuzzy
-                    self.log(f"      ✨ FUZZY STITCHED! -> '{combined_text}' ≈ '{player_found['name']}'")
-                    i += 2 
+                
+                # 1A. Exact Stitched
+                if combined_text in self.db:
+                    player_found = self.db[combined_text]
+                    self.log(f"      ✅ EXACT STITCHED! -> ID: {player_found['id']} ({player_found['name']})")
+                    i += 2
                     match_found = True
-
-            # --- PRIORITY 4: FUZZY SINGLE (Low Quality) ---
-            elif not match_found:
-                fuzzy = self.find_fuzzy_match(current_text)
-                if fuzzy:
-                    player_found = fuzzy
-                    self.log(f"      ✨ FUZZY SINGLE! -> '{current_text}' ≈ '{player_found['name']}'")
+                
+                # 1B. Fuzzy Stitched (Fallback) <--- ### NEW 4
+                elif not match_found:
+                    fuzzy = self.find_fuzzy_match(combined_text)
+                    if fuzzy:
+                        player_found = fuzzy
+                        self.log(f"      ✨ FUZZY STITCHED! -> '{combined_text}' ≈ '{player_found['name']}'")
+                        i += 2 
+                        match_found = True
+            
+            # --- CHECK 2: SINGLE WORD (Exact & Fuzzy) ---
+            if not match_found:
+                # 2A. Exact Single
+                if current_text in self.db:
+                    player_found = self.db[current_text]
+                    self.log(f"      ✅ EXACT SINGLE! -> ID: {player_found['id']} ({player_found['name']})")
                     i += 1
                     match_found = True
+                
+                # 2B. Fuzzy Single (Fallback) <--- ### NEW 4
+                elif not match_found:
+                    fuzzy = self.find_fuzzy_match(current_text)
+                    if fuzzy:
+                        player_found = fuzzy
+                        self.log(f"      ✨ FUZZY SINGLE! -> '{current_text}' ≈ '{player_found['name']}'")
+                        i += 1
+                        match_found = True
 
-            # If still no match, move to next word
+            # If still no match
             if not match_found:
                 i += 1
                 
