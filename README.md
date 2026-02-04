@@ -13,9 +13,9 @@
 
 **You can access and use the scanner directly in your browser without installation:**
 
-<h1 align="center">
+<h2 align="center">
 🚀 Click here to launch: <a href="" target="_blank">https://ina-lyser.streamlit.app</a>
-<h1>
+</h2>
 
 ---
 
