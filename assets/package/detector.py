@@ -9,8 +9,12 @@ import streamlit as st
 
 @st.cache_resource
 def load_easyocr_reader():
-    # This runs only once per server reboot
-    return easyocr.Reader(['en'], gpu=False)
+    return easyocr.Reader(
+        ['en'], 
+        gpu=False, 
+        model_storage_directory='assets/models',
+        download_enabled=False
+    )
 
 class ExactTeamScanner:
     def __init__(self, csv_path, image_path):
