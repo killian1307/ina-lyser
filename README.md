@@ -8,21 +8,21 @@
 
 **You can access and use the scanner directly in your browser without installation:**
 
-### 🚀 [Click here to launch: https://ina-lyser.streamlit.app/](https://ina-lyser.streamlit.app/)
+### 🚀 Click here to launch: [https://ina-lyser.streamlit.app/](https://ina-lyser.streamlit.app/)
 
 ---
 
-**Ina-Lyser** is an automated tool designed for **Inazuma Eleven** players. It allows you to upload screenshots of your team formations, automatically detects player names, stats, and tactical setups using AI (OCR), and exports the data into a clean JSON format for use in other tools or team builders.
+**Ina-Lyser** is an automated tool designed for **Inazuma Eleven: Victory Road** players. It allows you to upload screenshots of your team formations, automatically detects player names, stats, and tactical setups using local AI (OCR), and exports the data into a clean JSON format. My goal was primarily to build this tool as part of a larger **Inazuma Eleven: Victory Road** competitive website project, but other tools or team builders could take advantage of the simple execution and clean format too!
 
 ## Summary
 
-The project solves the tedious task of manually transcribing team data. By using **Computer Vision** and **Fuzzy String Matching**, Ina-Lyser can read low-resolution or slightly obstructed text from game screenshots, match it against a database of known players, and reconstruct your exact team formation digitally.
+The project solves the tedious task of manually transcribing team data. By using **Computer Vision** and **Fuzzy String Matching**, Ina-Lyser can read low-resolution or slightly obstructed text from game screenshots, match it against a database of known players, and reconstruct your exact team formation in a clean format.
 
 ## Features
 
-* **AI-Powered Scanning:** Uses `EasyOCR` and `OpenCV` to read text from images.
+* **Local, AI-Powered Scanning:** Uses `EasyOCR` and `OpenCV` to read text from images.
 * **Fuzzy Matching:** Smart detection that fixes OCR typos (e.g., correcting "Yuya Kogurer" to "Yuya Kogure").
-* **Formation Detection:** Automatically identifies formations like 4-4-2, 3-5-2, Dot Prison, etc.
+* **Formation Detection:** Automatically identifies formations like 4-4-2 Diamond, 4-4-2 Box, 3-5-2 Freedom, etc.
 * **JSON Export:** Generates a structured `.json` file containing all player data, stats, and positions.
 * **Dual Language Support:** Capable of detecting player names in both Romanji and Localized formats.
 
