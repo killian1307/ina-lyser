@@ -14,7 +14,7 @@ Official Artwork
 **You can access and use the scanner directly in your browser without installation:**
 
 <h3 align="center">
-🚀 Click here to launch: <a href="" target="_blank">https://ina-lyser.streamlit.app</a>
+🚀 Click here to launch: <a href="https://ina-lyser.streamlit.app" target="_blank">https://ina-lyser.streamlit.app</a>
 </h3>
 
 ---
