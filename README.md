@@ -2,7 +2,8 @@
 
 # ⚡⚽ Ina-Lyser ⚽⚡
 
-![Screenshot of game title menu](assets/img/cover.jpg)
+![Official Artwork](assets/img/cover.jpg)
+*Official Artwork*
 
 [![Static Badge](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
