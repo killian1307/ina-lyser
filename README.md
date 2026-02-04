@@ -3,7 +3,7 @@
 # ⚡⚽ Ina-Lyser ⚽⚡
 
 ![Official Artwork](assets/img/cover.jpg)
-<p align="right" text-size="0.8em">
+<p align="right" font-size="0.8em">
 Official Artwork
 </p>
 
