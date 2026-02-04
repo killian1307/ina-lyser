@@ -108,7 +108,7 @@ class ExactTeamScanner:
         
         contrast_img = cv2.convertScaleAbs(gray, alpha=1, beta=-50)
         # DEBUG: saves the contrasted image
-        cv2.imwrite("debug_high_contrast.jpg", contrast_img)
+        # cv2.imwrite("debug_high_contrast.jpg", contrast_img)
         return contrast_img
 
     def get_reading_order(self, result):

@@ -98,7 +98,7 @@ class WebsiteBuilder:
             if not os.path.exists(self.db_path):
                 st.error(t["db_error"])
                 return
-
+            
             # File Uploader
             uploaded_file = st.file_uploader(t["upload_label"], type=["jpg", "png", "jpeg"])
 
