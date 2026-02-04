@@ -5,12 +5,19 @@ import os
 import cv2
 import re
 import time
+import streamlit as st
+
+@st.cache_resource
+def load_easyocr_reader():
+    # This runs only once per server reboot
+    return easyocr.Reader(['en'], gpu=False)
 
 class ExactTeamScanner:
     def __init__(self, csv_path, image_path):
         self.csv_path = csv_path
         self.image_path = image_path
-        self.reader = easyocr.Reader(['en'], gpu=False) 
+        
+        self.reader = load_easyocr_reader()
         
         self.db = self.load_database()
         
@@ -269,5 +276,4 @@ if __name__ == "__main__":
         else:
             print("❌ No players found.")
     except Exception as e:
-
         print(f"Error: {e} - COULDN'T OUTPUT FILE.")
