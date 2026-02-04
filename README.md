@@ -6,13 +6,16 @@
 <p align="right">
 <em>Official Artwork</em>
 </p>
+
 [![Static Badge](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
 ## 🌐 Online Access
 
 **You can access and use the scanner directly in your browser without installation:**
 
-### 🚀 Click here to launch: [https://ina-lyser.streamlit.app/](https://ina-lyser.streamlit.app/)
+<h1 align="center">
+🚀 Click here to launch: <a href="" target="_blank">https://ina-lyser.streamlit.app</a>
+<h1>
 
 ---
 
