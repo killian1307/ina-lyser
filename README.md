@@ -1,7 +1,7 @@
 [![Static Badge](https://img.shields.io/badge/lang-en-FF0000)](README.md) [![Static Badge](https://img.shields.io/badge/lang-fr-0000FF)](README.fr.md)
 
 # ⚡⚽ Ina-Lyser ⚽⚡
-
+![Official Artwork of Inazuma Eleven: Victory Road](assets/img/cover.jpg)
 [![Static Badge](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
 ## 🌐 Online Access
@@ -90,11 +90,9 @@ This project relies on the following open-source libraries:
 * **Pandas:** For managing the player database (CSV).
 * **Difflib:** For fuzzy string matching and typo correction.
 
-## Copyright
+## Licenses
 
-* **Cover Image:** [https://x.com/InazumaSeries/status/1968873138210701555](https://x.com/InazumaSeries/status/1968873138210701555)
-
-## License
+**Cover Image:** [https://x.com/InazumaSeries/status/1968873138210701555](https://x.com/InazumaSeries/status/1968873138210701555)
 
 **MIT License**
 
