@@ -8,7 +8,7 @@
 **Vous pouvez accéder au scanner et l'utiliser directement dans votre navigateur sans installation :**
 
 <h3 align="center">
-🚀 Cliquez ici pour lancer : <a href="https://ina-lyser.streamlit.app" target="_blank">https://ina-lyser.streamlit.app</a>
+🚀 Cliquez ici pour lancer : <a href="https://ina-lyser.streamlit.app/?lang=fr" target="_blank">https://ina-lyser.streamlit.app</a>
 </h3>
 
 ---
