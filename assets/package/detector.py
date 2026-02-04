@@ -22,7 +22,7 @@ def load_model():
         # CRITICAL: Stop it from trying to download anything
         download_enabled=False,
         # Optional: Helps stability on free cloud tier
-        quantize=False 
+        quantize=True
     )
 
 class ExactTeamScanner:
@@ -83,11 +83,10 @@ class ExactTeamScanner:
         if img is None:
             raise ValueError(f"Could not load image: {self.image_path}")
         
-        img_large = cv2.resize(img, None, fx=2.0, fy=2.0, interpolation=cv2.INTER_CUBIC)
-        # Increase contrast
-        contrast_img = cv2.convertScaleAbs(img_large, alpha=1.5, beta=-70)
+        contrast_img = cv2.convertScaleAbs(img, alpha=1.5, beta=-70)
         # DEBUG: saves the contrasted image
         # cv2.imwrite("debug_high_contrast.jpg", contrast_img)
+        print("Image Processed")
         return contrast_img
 
     def get_reading_order(self, result):
